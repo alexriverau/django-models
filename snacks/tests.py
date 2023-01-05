@@ -10,7 +10,7 @@ class SnackTests(TestCase):
         self.user = get_user_model().objects.create_user(
             username="tester", email="tester@email.com", password="pass")
         self.snack = Snack.objects.create(
-            name='Popcorn', description=True, purchaser=self.user)
+            name='Popcorn', description='description', purchaser=self.user)
 
     def test_string_representation(self):
         self.assertEqual(str(self.snack), 'Popcorn')
@@ -19,7 +19,7 @@ class SnackTests(TestCase):
         self.assertEqual(f'{self.snack.name}', 'Popcorn')
 
     def test_snack_description(self):
-        self.assertEqual(bool(self.snack.description), True)
+        self.assertEqual(f'{self.snack.description}', 'description')
 
     def test_list_page_status_code(self):
         url = reverse("snack_list")
